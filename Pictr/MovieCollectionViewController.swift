@@ -44,32 +44,35 @@ class MovieCollectionViewController: UICollectionViewController {
         movieCollectionView.collectionViewLayout = layout
         
         if (genre != nil) {
-            TMDBClient.sharedInstance().getMoviesForGenre(genre!.genreID) { results, error in
-                print("via genres, error - \(error)")
-                print("via genres, results - \(results)")
-                self.movies = results!
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.movieCollectionView.reloadData()
-                }
-            }
+            getMoviesForGenres()
         } else {
-            TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
-                print("error - \(error)")
-                //print("result - \(results!)")
-            
-                self.movies = results!
-                print("movies - \(self.movies.count)")
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.movieCollectionView.reloadData()
-                }
-            }
+            getMovies()
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        movieCollectionView.reloadData()
+//        movieCollectionView.reloadData()
+    }
+    
+    // MARK: - Getting Movies
+    
+    private func getMovies() {
+        TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
+            self.movies = results!
+            dispatch_async(dispatch_get_main_queue()) {
+                self.movieCollectionView.reloadData()
+            }
+        }
+    }
+    
+    private func getMoviesForGenres() {
+        TMDBClient.sharedInstance().getMoviesForGenre(genre!.genreID) { results, error in
+            self.movies = results!
+            dispatch_async(dispatch_get_main_queue()) {
+                self.movieCollectionView.reloadData()
+            }
+        }
     }
     
     //  MARK: - CollectionView Delegates
@@ -84,12 +87,6 @@ class MovieCollectionViewController: UICollectionViewController {
         
         let movie = movies[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCollectionViewCell", forIndexPath: indexPath) as! MovieCollectionViewCell
-        
-//            TMDBClient.sharedInstance().taskForGETImage("w154", filePath: movie.posterPath!) { imageData, error in
-//                if imageData != nil {
-//                    cell.movieImageView.image = UIImage(data: imageData!)
-//                }
-//            }
         
         if let imageData = movie.imageData {
             cell.movieImageView.image = UIImage(data: imageData)
