@@ -12,7 +12,7 @@ class MovieCollectionViewController: UICollectionViewController {
     
     @IBOutlet var movieCollectionView: UICollectionView!
     
-    var movies = [TMDBMovie]()
+    private var movies = [TMDBMovie]()
     var genre: TMDBGenre?
     
     override func viewDidLoad() {

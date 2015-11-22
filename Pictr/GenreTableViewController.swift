@@ -17,7 +17,7 @@ class GenreTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Genres"
-        
+        //self.view.backgroundColor = UIColor.whiteColor()
         genreTableView.delegate = self
         genreTableView.dataSource = self
         

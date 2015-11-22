@@ -40,6 +40,7 @@ class TMDBClient : NSObject {
         /* 2/3. Build the URL and configure the request */
         let urlString = Constants.BaseURLSecure + method + TMDBClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
+        print("request url - \(urlString)")
         let request = NSURLRequest(URL: url)
         
         /* 4. Make the request */

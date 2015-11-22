@@ -20,6 +20,8 @@
 		9881902B1BF5176200C171D0 /* TMDBMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881902A1BF5176200C171D0 /* TMDBMovie.swift */; };
 		98A2DAFD1C01D13A006ABD4C /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */; };
 		98A2DB011C01D4B2006ABD4C /* TMDBGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DB001C01D4B2006ABD4C /* TMDBGenre.swift */; };
+		98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */; };
+		98A2DB051C01FB4D006ABD4C /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */; };
 		98D0BA591BF877300014BF6F /* AddToButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D0BA581BF877300014BF6F /* AddToButton.swift */; };
 		98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F031511BFB542300260D91 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +42,8 @@
 		9881902A1BF5176200C171D0 /* TMDBMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMovie.swift; sourceTree = "<group>"; };
 		98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
 		98A2DB001C01D4B2006ABD4C /* TMDBGenre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBGenre.swift; sourceTree = "<group>"; };
+		98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
+		98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		98D0BA581BF877300014BF6F /* AddToButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToButton.swift; sourceTree = "<group>"; };
 		98F031511BFB542300260D91 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +108,7 @@
 			children = (
 				98D0BA581BF877300014BF6F /* AddToButton.swift */,
 				98414FAF1BF7B90500A05951 /* MovieCollectionViewCell.swift */,
+				98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				988190121BF506C100C171D0 /* MovieCollectionViewController.swift */,
 				98F031511BFB542300260D91 /* MovieDetailViewController.swift */,
 				98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */,
+				98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -192,10 +198,12 @@
 			files = (
 				9881902B1BF5176200C171D0 /* TMDBMovie.swift in Sources */,
 				988190231BF5150700C171D0 /* TMDBConstants.swift in Sources */,
+				98A2DB051C01FB4D006ABD4C /* MovieTableViewCell.swift in Sources */,
 				988190251BF5157600C171D0 /* TMDBClient.swift in Sources */,
 				98D0BA591BF877300014BF6F /* AddToButton.swift in Sources */,
 				988190271BF515D600C171D0 /* TMDBConfig.swift in Sources */,
 				988190131BF506C100C171D0 /* MovieCollectionViewController.swift in Sources */,
+				98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */,
 				98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */,
 				988190291BF516EF00C171D0 /* TMDBConvenience.swift in Sources */,
 				98A2DAFD1C01D13A006ABD4C /* GenreTableViewController.swift in Sources */,
