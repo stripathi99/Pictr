@@ -34,7 +34,25 @@ extension TMDBClient {
         return task
     }
     
-//    func getGenres
+    func getGenres(completionHandler: (result: [TMDBGenre]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+        
+        let task = taskForGETMethod(Methods.MovieGenres, parameters: nil) { JSONResult, error in
+        
+            if let error = error {
+                completionHandler(result: nil, error: error)
+            } else {
+                print("getGenres JSONResult - \(JSONResult)")
+                if let results = JSONResult.valueForKey(TMDBClient.JSONResponseKeys.GenreResults) as? [[String : AnyObject]] {
+                    
+                    let genres = TMDBGenre.genresFromResults(results)
+                    completionHandler(result: genres, error: nil)
+                } else {
+                    completionHandler(result: nil, error: NSError(domain: "getGenres parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getGenres"]))
+                }
+            }
+        }
+        return task
+    }
     
     func getMoviesForGenre(genre: Int, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         

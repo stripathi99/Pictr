@@ -102,6 +102,7 @@ extension TMDBClient {
         // MARK: Genres
         static let GenreID = "id"
         static let GenreName = "name"
+        static let GenreResults = "genres"
     }
     
 //    // MARK: - Poster Sizes
