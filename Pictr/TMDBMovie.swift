@@ -10,20 +10,24 @@ import Foundation
 class TMDBMovie {
 
     var title = ""
-    var id = 0
+    var id: Int64 = 0
     var posterPath: String? = nil
     var releaseDate: String? = nil
     var overview: String? = nil
-    var popularity: Double = 0
+    var voteAverage: Double = 0.0
+    var voteCount: Int = 0
+    //var popularity: Double = 0
     
     /* Construct a TMDBMovie from a dictionary */
     init(dictionary: [String : AnyObject]) {
         
         title = dictionary[TMDBClient.JSONResponseKeys.MovieTitle] as! String
-        id = dictionary[TMDBClient.JSONResponseKeys.MovieID] as! Int
+        id = Int64(dictionary[TMDBClient.JSONResponseKeys.MovieID] as! Int)
         posterPath = dictionary[TMDBClient.JSONResponseKeys.MoviePosterPath] as? String
         overview = dictionary[TMDBClient.JSONResponseKeys.MovieOverview] as? String
-        popularity = dictionary[TMDBClient.JSONResponseKeys.MoviePopularity] as! Double
+//        popularity = dictionary[TMDBClient.JSONResponseKeys.MoviePopularity] as! Double
+        voteAverage = dictionary[TMDBClient.JSONResponseKeys.MovieVoteAverage] as! Double
+        voteCount = dictionary[TMDBClient.JSONResponseKeys.MovieVoteCount] as! Int
         releaseDate = dictionary[TMDBClient.JSONResponseKeys.MovieReleaseDate] as? String
         
 //        if let releaseDateString = dictionary[TMDBClient.JSONResponseKeys.MovieReleaseDate] as? String {

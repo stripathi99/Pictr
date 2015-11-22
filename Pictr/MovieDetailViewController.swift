@@ -16,8 +16,9 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var addToFavoritesButton: AddToButton!
     @IBOutlet weak var addToWatchListButton: AddToButton!
-    @IBOutlet weak var movieOverviewLabel: UILabel!
     @IBOutlet weak var movieOverviewTextView: UITextView!
+    @IBOutlet weak var movieRatingLabel: UILabel!
+    
     
     var movie: TMDBMovie!
     
@@ -39,27 +40,18 @@ class MovieDetailViewController: UIViewController {
         movieBackgroundImageView.image = UIImage(data: movie.imageData!)
         moviePosterImageView.image = UIImage(data: movie.imageData!)
         
-        movieTitleLabel.text = "\n \(movie.title)"
+        movieTitleLabel.text = "\(movie.title)"
+        
+        movieRatingLabel.text = "\(movie.voteAverage)/10 (\(movie.voteCount) votes)"
         
         //movieOverviewLabel.text = movie.overview
         //movieOverviewTextView.textColor = UIColor.whiteColor()
         movieOverviewTextView.text = movie.overview
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func addToFavorites(sender: AddToButton) {
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func addToWatchList(sender: AddToButton) {
     }
-    */
-
 }

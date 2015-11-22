@@ -169,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T9O-FK-fh9" id="1eA-aF-PUK">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOO-hK-oUd">
@@ -290,28 +290,22 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="mr0-vb-dgi"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6G-Tf-wKa" customClass="AddToButton" customModule="Pictr" customModuleProvider="target">
-                                <rect key="frame" x="212" y="250" width="368" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="gfw-Pr-d6Q"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="Add to Watch list"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeM-dL-k2r" customClass="AddToButton" customModule="Pictr" customModuleProvider="target">
-                                <rect key="frame" x="212" y="212" width="368" height="30"/>
+                                <rect key="frame" x="212" y="135" width="368" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="yc4-nX-xKp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="Add to Favorites"/>
+                                <connections>
+                                    <action selector="addToFavorites:" destination="nAL-yj-bpa" eventType="touchUpInside" id="oS7-xD-5b9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-aA-VRK">
                                 <rect key="frame" x="212" y="20" width="368" height="63"/>
@@ -323,10 +317,30 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.4/10 (9999 votes)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAC-Pb-hGH">
+                                <rect key="frame" x="212" y="91" width="368" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6G-Tf-wKa" customClass="AddToButton" customModule="Pictr" customModuleProvider="target">
+                                <rect key="frame" x="212" y="173" width="368" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="gfw-Pr-d6Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Add to Watch list"/>
+                                <connections>
+                                    <action selector="addToWatchList:" destination="nAL-yj-bpa" eventType="touchUpInside" id="KFe-G8-buW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="sAC-Pb-hGH" firstAttribute="centerY" secondItem="K5U-F6-sjR" secondAttribute="centerY" constant="-48.5" id="AGD-fn-9XK"/>
                             <constraint firstItem="fuR-pT-QaA" firstAttribute="bottom" secondItem="aXY-Yr-YP3" secondAttribute="top" id="C9v-UN-xTK"/>
                             <constraint firstItem="K5U-F6-sjR" firstAttribute="top" secondItem="4fO-ed-ogP" secondAttribute="bottom" id="Ko6-7x-XXi"/>
                             <constraint firstItem="gtd-aA-VRK" firstAttribute="trailing" secondItem="8oe-Xw-i2G" secondAttribute="trailing" id="KwK-Hs-Fte"/>
@@ -336,25 +350,31 @@
                             <constraint firstItem="VeM-dL-k2r" firstAttribute="leading" secondItem="gtd-aA-VRK" secondAttribute="leading" id="TEb-gU-tCM"/>
                             <constraint firstItem="H6G-Tf-wKa" firstAttribute="leading" secondItem="VeM-dL-k2r" secondAttribute="leading" id="VQJ-BN-dkB"/>
                             <constraint firstItem="H6G-Tf-wKa" firstAttribute="top" secondItem="VeM-dL-k2r" secondAttribute="bottom" constant="8" symbolic="YES" id="Waj-Ud-p3L"/>
+                            <constraint firstItem="sAC-Pb-hGH" firstAttribute="leading" secondItem="VeM-dL-k2r" secondAttribute="leading" id="YRk-Kh-HVb"/>
                             <constraint firstItem="K5U-F6-sjR" firstAttribute="trailing" secondItem="mqC-IG-UWk" secondAttribute="trailing" id="ahH-qU-hec"/>
                             <constraint firstItem="gtd-aA-VRK" firstAttribute="leading" secondItem="K5U-F6-sjR" secondAttribute="trailing" constant="8" symbolic="YES" id="eLg-ZT-1Fi"/>
                             <constraint firstItem="mqC-IG-UWk" firstAttribute="leading" secondItem="K5U-F6-sjR" secondAttribute="leading" id="fDj-xX-c1b"/>
                             <constraint firstItem="VeM-dL-k2r" firstAttribute="trailing" secondItem="gtd-aA-VRK" secondAttribute="trailing" id="fdc-Pr-M5y"/>
+                            <constraint firstItem="sAC-Pb-hGH" firstAttribute="trailing" secondItem="VeM-dL-k2r" secondAttribute="trailing" id="h4h-7r-eNf"/>
                             <constraint firstItem="fuR-pT-QaA" firstAttribute="leading" secondItem="wPS-zF-Fz5" secondAttribute="leading" id="h6B-A0-1SF"/>
                             <constraint firstAttribute="trailing" secondItem="fuR-pT-QaA" secondAttribute="trailing" id="hgr-i0-ncF"/>
                             <constraint firstItem="H6G-Tf-wKa" firstAttribute="trailing" secondItem="VeM-dL-k2r" secondAttribute="trailing" id="kpZ-Fn-zq6"/>
                             <constraint firstItem="mqC-IG-UWk" firstAttribute="top" secondItem="K5U-F6-sjR" secondAttribute="bottom" constant="29" id="mJl-iy-4RY"/>
                             <constraint firstItem="8oe-Xw-i2G" firstAttribute="centerX" secondItem="fuR-pT-QaA" secondAttribute="centerX" id="n0H-QZ-dki"/>
                             <constraint firstItem="gtd-aA-VRK" firstAttribute="top" secondItem="4fO-ed-ogP" secondAttribute="bottom" id="oXt-SQ-twK"/>
+                            <constraint firstItem="VeM-dL-k2r" firstAttribute="top" secondItem="sAC-Pb-hGH" secondAttribute="bottom" constant="23" id="pju-Sn-xWH"/>
                             <constraint firstItem="8oe-Xw-i2G" firstAttribute="leading" secondItem="wPS-zF-Fz5" secondAttribute="leadingMargin" id="tVY-U5-wXQ"/>
-                            <constraint firstItem="H6G-Tf-wKa" firstAttribute="bottom" secondItem="K5U-F6-sjR" secondAttribute="bottom" id="uid-ph-psp"/>
+                            <constraint firstItem="H6G-Tf-wKa" firstAttribute="bottom" secondItem="K5U-F6-sjR" secondAttribute="bottom" constant="-77" id="uid-ph-psp"/>
                             <constraint firstAttribute="bottom" secondItem="8oe-Xw-i2G" secondAttribute="bottom" constant="20" symbolic="YES" id="y5b-sr-PkR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addToFavoritesButton" destination="VeM-dL-k2r" id="1h3-7C-E1E"/>
+                        <outlet property="addToWatchListButton" destination="H6G-Tf-wKa" id="XJE-Gm-4qn"/>
                         <outlet property="movieBackgroundImageView" destination="fuR-pT-QaA" id="sJJ-bQ-QLc"/>
                         <outlet property="movieOverviewTextView" destination="8oe-Xw-i2G" id="gV5-mi-6bB"/>
                         <outlet property="moviePosterImageView" destination="K5U-F6-sjR" id="tXB-rr-0fT"/>
+                        <outlet property="movieRatingLabel" destination="sAC-Pb-hGH" id="mh9-kd-DJA"/>
                         <outlet property="movieTitleLabel" destination="gtd-aA-VRK" id="YIM-8O-dvC"/>
                     </connections>
                 </viewController>

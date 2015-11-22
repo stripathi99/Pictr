@@ -97,7 +97,8 @@ extension TMDBClient {
         static let MovieReleaseYear = "release_year"
         static let MovieResults = "results"
         static let MovieOverview = "overview"
-        static let MoviePopularity = "popularity"
+        static let MovieVoteAverage = "vote_average"
+        static let MovieVoteCount = "vote_count"
         
         // MARK: Genres
         static let GenreID = "id"
