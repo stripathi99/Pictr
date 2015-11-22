@@ -40,7 +40,9 @@ class MovieDetailViewController: UIViewController {
         movieBackgroundImageView.image = UIImage(data: movie.imageData!)
         moviePosterImageView.image = UIImage(data: movie.imageData!)
         
-        movieTitleLabel.text = "\(movie.title)"
+        let movieReleaseYear: String = (movie.releaseDate! as NSString).substringToIndex(4)
+        
+        movieTitleLabel.text = "\(movie.title) (\(movieReleaseYear))"
         
         movieRatingLabel.text = "\(movie.voteAverage)/10 (\(movie.voteCount) votes)"
         
