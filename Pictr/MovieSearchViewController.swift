@@ -16,6 +16,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     var movieSearchController: UISearchController!
     var singleTapInSearchModeGestureRecognizer: UITapGestureRecognizer!
     var searchTask: NSURLSessionDataTask?
+    private var fetchInProgressCount = 0
     
     private var searchResults = [TMDBMovie]()
     
@@ -45,8 +46,8 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         movieSearchTableView.tableHeaderView = movieSearchController.searchBar
         self.definesPresentationContext = true
         
-        movieSearchTableView.estimatedRowHeight = 62.0
-        //movieSearchTableView.rowHeight = UITableViewAutomaticDimension
+//        movieSearchTableView.estimatedRowHeight = 62.0
+//        movieSearchTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     // MARK: - UIGesture
@@ -61,6 +62,22 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         if !searchString.isEmpty || searchResults.count > 0 {
             movieSearchActivityIndicator.startAnimating()
             searchMovies(searchString)
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        view.addGestureRecognizer(singleTapInSearchModeGestureRecognizer)
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        view.removeGestureRecognizer(singleTapInSearchModeGestureRecognizer)
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchResults = [TMDBMovie]()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.movieSearchActivityIndicator.stopAnimating()
+            self.movieSearchTableView.reloadData()
         }
     }
     
