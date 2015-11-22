@@ -9,7 +9,7 @@
         <!--Movie Collection View Controller-->
         <scene sceneID="pFJ-Xe-P0W">
             <objects>
-                <collectionViewController storyboardIdentifier="Movie" id="3M3-M0-H5G" customClass="MovieCollectionViewController" customModule="Pictr" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="MovieCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3M3-M0-H5G" customClass="MovieCollectionViewController" customModule="Pictr" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="xkv-Pg-Dmb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,12 +92,22 @@
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="genre" id="TET-Yh-EWG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="genre" textLabel="0qk-MS-D5e" style="IBUITableViewCellStyleDefault" id="TET-Yh-EWG">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TET-Yh-EWG" id="g7i-UR-eHb">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0qk-MS-D5e">
+                                            <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -109,6 +119,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="bFU-4k-EQE"/>
+                    <connections>
+                        <outlet property="genreTableView" destination="uaG-Vo-Pam" id="YnF-v8-hdS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvw-ZY-P0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

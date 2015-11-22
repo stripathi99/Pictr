@@ -10,15 +10,25 @@ import UIKit
 
 class GenreTableViewController: UITableViewController {
 
+    @IBOutlet var genreTableView: UITableView!
+    var genres = [TMDBGenre]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Genres"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        genreTableView.delegate = self
+        genreTableView.dataSource = self
+        
+        TMDBClient.sharedInstance().getGenres() { results, error in
+            print("viewDidLoad error - \(error)")
+            self.genres = results!
+            print("viewDidLoad results - \(self.genres.count)")
+            dispatch_async(dispatch_get_main_queue()) {
+                self.genreTableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,24 +40,33 @@ class GenreTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("numberOfRowsInSection - \(genres.count)")
+        return genres.count
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        
+        let genre = genres[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("genre") as UITableViewCell!
+        
+        cell.backgroundColor = UIColor.blackColor()
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.text = genre.genreName
+        
         return cell
     }
-    */
-
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("MovieCollectionViewController") as! MovieCollectionViewController
+        
+        controller.genre = genres[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -13,12 +13,17 @@ class MovieCollectionViewController: UICollectionViewController {
     @IBOutlet var movieCollectionView: UICollectionView!
     
     var movies = [TMDBMovie]()
+    var genre: TMDBGenre?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        navigationItem.title = "Now Playing"
+        if let genreName = genre?.genreName {
+            navigationItem.title = genreName
+        } else {
+            navigationItem.title = "Now Playing"
+        }
         
         //UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.grayColor()], forState:.Normal)
         
@@ -38,14 +43,25 @@ class MovieCollectionViewController: UICollectionViewController {
         layout.itemSize = CGSizeMake(widthDimension, heightDimension)
         movieCollectionView.collectionViewLayout = layout
         
-        TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
-            print("error - \(error)")
-            //print("result - \(results!)")
+        if (genre != nil) {
+            TMDBClient.sharedInstance().getMoviesForGenre(genre!.genreID) { results, error in
+                print("via genres, error - \(error)")
+                print("via genres, results - \(results)")
+                self.movies = results!
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.movieCollectionView.reloadData()
+                }
+            }
+        } else {
+            TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
+                print("error - \(error)")
+                //print("result - \(results!)")
             
-            self.movies = results!
-            print("movies - \(self.movies.count)")
-            dispatch_async(dispatch_get_main_queue()) {
-                self.movieCollectionView.reloadData()
+                self.movies = results!
+                print("movies - \(self.movies.count)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.movieCollectionView.reloadData()
+                }
             }
         }
     }
@@ -55,44 +71,6 @@ class MovieCollectionViewController: UICollectionViewController {
         
         movieCollectionView.reloadData()
     }
-    
-    // MARK: - Layout
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        
-//        let layout = UICollectionViewFlowLayout()
-//        //layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        layout.minimumLineSpacing = minimumSpacingPerCell
-//        layout.minimumInteritemSpacing = minimumSpacingPerCell
-//        
-//        var cellWidth: CGFloat!
-//        
-////        // Landscape
-////        if UIApplication.sharedApplication().statusBarOrientation.isLandscape == true {
-////            let totalSpacingBetweenCells = (minimumSpacingPerCell * cellsPerRowInLandscpaeMode) - minimumSpacingPerCell
-////            let availableWidthForCells = collectionView.frame.size.width - totalSpacingBetweenCells
-////            cellWidth = availableWidthForCells / cellsPerRowInLandscpaeMode
-////            
-////            // Portrait
-////        } else {
-////            let totalSpacingBetweenCells = (minimumSpacingPerCell * cellsPerRowInPortraitMode) - minimumSpacingPerCell
-////            let availableWidthForCells = collectionView.frame.size.width - totalSpacingBetweenCells
-////            cellWidth = availableWidthForCells / cellsPerRowInPortraitMode
-////        }
-//        
-//        let totalSpacingBetweenCells = (minimumSpacingPerCell * cellsPerRow) - minimumSpacingPerCell
-//        let availableWidthForCells = movieCollectionView.frame.size.width - totalSpacingBetweenCells
-//        cellWidth = availableWidthForCells / cellsPerRow
-//        
-//        // Get 2 digit floored decimal point precision
-//        cellWidth = floor(cellWidth*100)/100
-//        
-//        // In storyboard, the manga image height:width ratio is specified as 1.3:1,
-//        // 44 points is fixed space allocated to title and author labels
-//        //layout.itemSize = CGSize(width: cellWidth, height: (cellWidth*1.3) + 44)
-//        movieCollectionView.collectionViewLayout = layout
-//    }
     
     //  MARK: - CollectionView Delegates
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

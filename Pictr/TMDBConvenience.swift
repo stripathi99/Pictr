@@ -54,11 +54,13 @@ extension TMDBClient {
         return task
     }
     
-    func getMoviesForGenre(genre: Int, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getMoviesForGenre(genreID: Int, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
-        let parameters = [TMDBClient.ParameterKeys.GenreID: genre]
+        //let parameters = [TMDBClient.ParameterKeys.GenreID: genre]
+        var mutableMethod : String = Methods.MoviesByGenre
+        mutableMethod = TMDBClient.subtituteKeyInMethod(mutableMethod, key: TMDBClient.JSONResponseKeys.GenreID, value: String(genreID))!
         
-        let task = taskForGETMethod(Methods.MoviesByGenre, parameters: parameters) { JSONResult, error in
+        let task = taskForGETMethod(mutableMethod, parameters: nil) { JSONResult, error in
             if let error = error {
                 completionHandler(result: nil, error: error)
             } else {
