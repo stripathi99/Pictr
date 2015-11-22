@@ -34,6 +34,8 @@ extension TMDBClient {
         return task
     }
     
+//    func getGenres
+    
     func getMoviesForGenre(genre: Int, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
         let parameters = [TMDBClient.ParameterKeys.GenreID: genre]

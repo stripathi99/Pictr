@@ -24,17 +24,6 @@ extension TMDBClient {
     // MARK: - Methods
     struct Methods {
         
-//        // MARK: Account
-//        static let Account = "account"
-//        static let AccountIDFavoriteMovies = "account/{id}/favorite/movies"
-//        static let AccountIDFavorite = "account/{id}/favorite"
-//        static let AccountIDWatchlistMovies = "account/{id}/watchlist/movies"
-//        static let AccountIDWatchlist = "account/{id}/watchlist"
-//        
-//        // MARK: Authentication
-//        static let AuthenticationTokenNew = "authentication/token/new"
-//        static let AuthenticationSessionNew = "authentication/session/new"
-        
         // MARK: Movies
         static let NowPlaying = "movie/now_playing"
         static let Popular = "movie/popular"
@@ -109,6 +98,10 @@ extension TMDBClient {
         static let MovieResults = "results"
         static let MovieOverview = "overview"
         static let MoviePopularity = "popularity"
+        
+        // MARK: Genres
+        static let GenreID = "id"
+        static let GenreName = "name"
     }
     
 //    // MARK: - Poster Sizes
