@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1149" y="-268"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Genre Table View Controller-->
         <scene sceneID="AwJ-Cq-FLa">
             <objects>
-                <tableViewController id="K1q-1c-Kb6" sceneMemberID="viewController">
+                <tableViewController id="K1q-1c-Kb6" customClass="GenreTableViewController" customModule="Pictr" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uaG-Vo-Pam">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
