@@ -9,14 +9,21 @@
 import Foundation
 import CoreData
 
-class Genre {
+class Genre: NSManagedObject {
     
-    var genreName: String
-    var genreID: Int
+    @NSManaged var id: NSNumber
+    @NSManaged var name: String
     
-    init(dictionary: [String : AnyObject]) {
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         
-        genreID = dictionary[TMDBClient.JSONResponseKeys.GenreID] as! Int
-        genreName = dictionary[TMDBClient.JSONResponseKeys.GenreName] as! String
+        let entity = NSEntityDescription.entityForName("Genre", inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        self.id = dictionary[TMDBClient.JSONResponseKeys.GenreID] as! Int
+        self.name = dictionary[TMDBClient.JSONResponseKeys.GenreName] as! String
     }
 }

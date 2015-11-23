@@ -19,7 +19,7 @@ class MovieCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if let genreName = genre?.genreName {
+        if let genreName = genre?.name {
             navigationItem.title = genreName
         } else {
             navigationItem.title = "Now Playing"
@@ -73,7 +73,7 @@ class MovieCollectionViewController: UICollectionViewController {
     }
     
     private func getMoviesForGenres() {
-        TMDBClient.sharedInstance().getMoviesForGenre(genre!.genreID) { results, error in
+        TMDBClient.sharedInstance().getMoviesForGenre(Int(genre!.id.intValue)) { results, error in
             if error != nil {
                 print("\(error?.localizedDescription)")
             } else {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class GenreTableViewController: UITableViewController {
 
@@ -17,22 +18,31 @@ class GenreTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Genres"
-        //self.view.backgroundColor = UIColor.whiteColor()
+        
+        let fetchRequest = NSFetchRequest(entityName: "Genre")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        do {
+            genres = try sharedContext.executeFetchRequest(fetchRequest) as! [Genre]
+            if genres.count == 0 {
+                getAllGenres()
+            }
+        } catch {
+            fatalError("error - \(error)")
+        }
+        
         genreTableView.delegate = self
         genreTableView.dataSource = self
-        
-        getGenres()
     }
 
-    private func getGenres() {
-        
+    private func getAllGenres() {
         TMDBClient.sharedInstance().getGenres() { results , error in
             if (error != nil) {
                 print("\(error?.localizedDescription)")
             } else {
                 if let genresDictionary = results {
                     let genres = genresDictionary.map() { (dictionary: [String : AnyObject]) -> Genre in
-                        let genre = Genre(dictionary: dictionary)
+                        let genre = Genre(dictionary: dictionary, context: self.sharedContext)
                         return genre
                     }
                     self.genres = genres
@@ -42,17 +52,29 @@ class GenreTableViewController: UITableViewController {
                 }
             }
         }
+        dispatch_async(dispatch_get_main_queue()) {
+            do {
+                try self.sharedContext.save()
+            } catch {
+                fatalError("error while saving, error - \(error)")
+            }
+        }
+    }
+    
+    // MARK: - Core Data Convenience
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance.managedObjectContext!
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection - \(genres.count)")
         return genres.count
     }
     
@@ -63,7 +85,7 @@ class GenreTableViewController: UITableViewController {
         
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.textLabel?.text = genre.genreName
+        cell.textLabel?.text = genre.name
         
         return cell
     }
@@ -74,50 +96,4 @@ class GenreTableViewController: UITableViewController {
         controller.genre = genres[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
