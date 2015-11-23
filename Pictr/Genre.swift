@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TMDBGenre {
+class Genre {
     
     var genreName = ""
     var genreID = 0
@@ -20,11 +20,11 @@ class TMDBGenre {
     }
     
     /* Helper: Given an array of dictionaries, convert them to an array of TMDBGenre objects */
-    static func genresFromResults(results: [[String : AnyObject]]) -> [TMDBGenre] {
-        var genres = [TMDBGenre]()
+    static func genresFromResults(results: [[String : AnyObject]]) -> [Genre] {
+        var genres = [Genre]()
         
         for result in results {
-            genres.append(TMDBGenre(dictionary: result))
+            genres.append(Genre(dictionary: result))
         }
         
         return genres

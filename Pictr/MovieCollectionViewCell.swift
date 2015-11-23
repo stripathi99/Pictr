@@ -15,6 +15,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieActivityIndicator: UIActivityIndicatorView!
     
+    var taskToCancelifCellIsReused: NSURLSessionTask? {
+        
+        didSet {
+            if let taskToCancel = oldValue {
+                taskToCancel.cancel()
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

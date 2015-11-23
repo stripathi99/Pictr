@@ -13,7 +13,7 @@ import Foundation
 
 extension TMDBClient {
     
-    func getNowPlayingMovies(completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getNowPlayingMovies(completionHandler: (result: [Movie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
         let task = taskForGETMethod(Methods.NowPlaying, parameters: nil) { JSONResult, error in
             
@@ -23,7 +23,7 @@ extension TMDBClient {
                 print("JSONResult - \(JSONResult)")
                 if let results = JSONResult.valueForKey(TMDBClient.JSONResponseKeys.MovieResults) as? [[String : AnyObject]] {
                     
-                    let movies = TMDBMovie.moviesFromResults(results)
+                    let movies = Movie.moviesFromResults(results)
                     
                     completionHandler(result: movies, error: nil)
                 } else {
@@ -34,7 +34,7 @@ extension TMDBClient {
         return task
     }
     
-    func getGenres(completionHandler: (result: [TMDBGenre]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getGenres(completionHandler: (result: [Genre]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
         let task = taskForGETMethod(Methods.MovieGenres, parameters: nil) { JSONResult, error in
         
@@ -44,7 +44,7 @@ extension TMDBClient {
                 print("getGenres JSONResult - \(JSONResult)")
                 if let results = JSONResult.valueForKey(TMDBClient.JSONResponseKeys.GenreResults) as? [[String : AnyObject]] {
                     
-                    let genres = TMDBGenre.genresFromResults(results)
+                    let genres = Genre.genresFromResults(results)
                     completionHandler(result: genres, error: nil)
                 } else {
                     completionHandler(result: nil, error: NSError(domain: "getGenres parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getGenres"]))
@@ -54,7 +54,7 @@ extension TMDBClient {
         return task
     }
     
-    func getMoviesForGenre(genreID: Int, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getMoviesForGenre(genreID: Int, completionHandler: (result: [Movie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
         //let parameters = [TMDBClient.ParameterKeys.GenreID: genre]
         var mutableMethod : String = Methods.MoviesByGenre
@@ -67,7 +67,7 @@ extension TMDBClient {
                 print("JSONResult - \(JSONResult)")
                 if let results = JSONResult.valueForKey(TMDBClient.JSONResponseKeys.MovieResults) as? [[String : AnyObject]] {
                     
-                    let movies = TMDBMovie.moviesFromResults(results)
+                    let movies = Movie.moviesFromResults(results)
                     
                     completionHandler(result: movies, error: nil)
                 } else {
@@ -78,7 +78,7 @@ extension TMDBClient {
         return task
     }
     
-    func getMoviesForSearchString(searchString: String, completionHandler: (result: [TMDBMovie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getMoviesForSearchString(searchString: String, completionHandler: (result: [Movie]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
         
         print("inside getMoviesForSearchString")
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
@@ -94,7 +94,7 @@ extension TMDBClient {
                 
                 if let results = JSONResult.valueForKey(TMDBClient.JSONResponseKeys.MovieResults) as? [[String : AnyObject]] {
                     
-                    let movies = TMDBMovie.moviesFromResults(results)
+                    let movies = Movie.moviesFromResults(results)
                     
                     completionHandler(result: movies, error: nil)
                 } else {

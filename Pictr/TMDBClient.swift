@@ -159,6 +159,11 @@ class TMDBClient : NSObject {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
+    // MARK: - Shared Image Cache
+    struct Caches {
+        static let imageCache = ImageCache()
+    }
+    
     // MARK: - Shared Instance
     
     class func sharedInstance() -> TMDBClient {

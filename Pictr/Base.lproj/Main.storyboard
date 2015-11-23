@@ -169,18 +169,11 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T9O-FK-fh9" id="1eA-aF-PUK">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOO-hK-oUd">
-                                                    <rect key="frame" x="8" y="7" width="46" height="46"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="prq-B3-T9K"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daH-v8-XK4">
-                                                    <rect key="frame" x="62" y="8" width="530" height="45"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="45"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -189,19 +182,15 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="daH-v8-XK4" firstAttribute="bottom" secondItem="BOO-hK-oUd" secondAttribute="bottom" id="Mhf-fR-W2c"/>
-                                                <constraint firstItem="daH-v8-XK4" firstAttribute="leading" secondItem="BOO-hK-oUd" secondAttribute="trailing" constant="8" symbolic="YES" id="Pvt-P9-IRn"/>
+                                                <constraint firstItem="daH-v8-XK4" firstAttribute="top" secondItem="1eA-aF-PUK" secondAttribute="topMargin" id="67C-99-w9M"/>
+                                                <constraint firstItem="daH-v8-XK4" firstAttribute="leading" secondItem="1eA-aF-PUK" secondAttribute="leadingMargin" id="DX1-uR-QUF"/>
                                                 <constraint firstItem="daH-v8-XK4" firstAttribute="trailing" secondItem="1eA-aF-PUK" secondAttribute="trailingMargin" id="RbR-un-S1H"/>
-                                                <constraint firstItem="daH-v8-XK4" firstAttribute="centerY" secondItem="BOO-hK-oUd" secondAttribute="centerY" id="bXu-ju-t7I"/>
-                                                <constraint firstItem="BOO-hK-oUd" firstAttribute="leading" secondItem="1eA-aF-PUK" secondAttribute="leadingMargin" id="sdP-6J-Dng"/>
-                                                <constraint firstItem="BOO-hK-oUd" firstAttribute="top" secondItem="1eA-aF-PUK" secondAttribute="topMargin" constant="-1" id="xZC-P4-xap"/>
-                                                <constraint firstItem="BOO-hK-oUd" firstAttribute="centerY" secondItem="1eA-aF-PUK" secondAttribute="centerY" id="yrl-zv-XAS"/>
+                                                <constraint firstItem="daH-v8-XK4" firstAttribute="centerY" secondItem="1eA-aF-PUK" secondAttribute="centerY" id="n38-6T-Mir"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <connections>
-                                            <outlet property="moviePosterImageView" destination="BOO-hK-oUd" id="NuL-OX-R0S"/>
                                             <outlet property="movieTitleLabel" destination="daH-v8-XK4" id="mDr-gb-OZ5"/>
                                         </connections>
                                     </tableViewCell>
@@ -290,7 +279,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="mr0-vb-dgi"/>
                                 </constraints>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

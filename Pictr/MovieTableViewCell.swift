@@ -10,8 +10,17 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var moviePosterImageView: UIImageView!
+    //@IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    var taskToCancelifCellIsReused: NSURLSessionTask? {
+        
+        didSet {
+            if let taskToCancel = oldValue {
+                taskToCancel.cancel()
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +29,7 @@ class MovieTableViewCell: UITableViewCell {
         backgroundView.backgroundColor = UIColor.blackColor()
         selectedBackgroundView = backgroundView
         
-        moviePosterImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        moviePosterImageView.clipsToBounds = true
+        //moviePosterImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        //moviePosterImageView.clipsToBounds = true
     }
 }

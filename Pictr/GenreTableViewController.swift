@@ -11,7 +11,7 @@ import UIKit
 class GenreTableViewController: UITableViewController {
 
     @IBOutlet var genreTableView: UITableView!
-    var genres = [TMDBGenre]()
+    var genres = [Genre]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

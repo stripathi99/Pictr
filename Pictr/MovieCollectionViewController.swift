@@ -12,8 +12,8 @@ class MovieCollectionViewController: UICollectionViewController {
     
     @IBOutlet var movieCollectionView: UICollectionView!
     
-    private var movies = [TMDBMovie]()
-    var genre: TMDBGenre?
+    private var movies = [Movie]()
+    var genre: Genre?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,45 +84,35 @@ class MovieCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         //print("inside cellForItemAtIndexPath")
+        var posterImage = UIImage(named: "posterPlaceholder")
         
         let movie = movies[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCollectionViewCell", forIndexPath: indexPath) as! MovieCollectionViewCell
         
-        if let imageData = movie.imageData {
-            cell.movieImageView.image = UIImage(data: imageData)
-            //cell.movieActivityIndicator.stopAnimating()
+        if movie.posterImage != nil {
+            
+            posterImage = movie.posterImage
         } else {
-            //cell.movieActivityIndicator.startAnimating()
-            if !movie.fetchInProgress {
-                movie.fetchImageData() { fetchComplete in
-                    if fetchComplete {
+            
+            let task = TMDBClient.sharedInstance().taskForGETImage("w185", filePath: movie.posterPath!) {
+                data, error in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                } else {
+                    if let data = data {
+                        let image = UIImage(data: data)
+                        movie.posterImage = image
+                        
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.movieCollectionView.reloadItemsAtIndexPaths([indexPath])
+                            cell.movieImageView.image = image
                         }
                     }
                 }
             }
+            cell.taskToCancelifCellIsReused = task
         }
         
-//        // if imageName: check in cache, else check if already downloaded, else fetch
-//        if let imageData = movie.imageData {
-//                let image = UIImage(data: imageData)!
-//                cell.movieImageView.image = image
-//                cell.movieActivityIndicator.stopAnimating()
-//            } else {
-//                cell.movieActivityIndicator.startAnimating()
-//                if !movie.fetchInProgress {
-//                    movie.fetchImageData { fetchComplete in
-//                        if fetchComplete {
-//                            dispatch_async(dispatch_get_main_queue()) {
-//                                self.movieCollectionView.reloadItemsAtIndexPaths([indexPath])
-//                            }
-//                        }
-//                }
-//            }
-//                }
-//    }}
-
+        cell.movieImageView.image = posterImage
         cell.movieTitleLabel.text = movie.title
         
         return cell

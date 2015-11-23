@@ -41,13 +41,6 @@ extension TMDBClient {
         static let Config = "configuration"
         
     }
-
-//    // MARK: - URL Keys
-//    struct URLKeys {
-//        
-//        static let UserID = "id"
-//        
-//    }
     
     // MARK: - Parameter Keys
     struct ParameterKeys {

@@ -18,7 +18,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     var searchTask: NSURLSessionDataTask?
     private var fetchInProgressCount = 0
     
-    private var searchResults = [TMDBMovie]()
+    private var searchResults = [Movie]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchResults = [TMDBMovie]()
+        searchResults = [Movie]()
         dispatch_async(dispatch_get_main_queue()) {
             self.movieSearchActivityIndicator.stopAnimating()
             self.movieSearchTableView.reloadData()
@@ -95,21 +95,9 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         let movie = searchResults[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieSearchResultCell") as! MovieTableViewCell
         
-        cell.movieTitleLabel.text = movie.title
-        if let imageData = movie.imageData {
-            cell.moviePosterImageView.image = UIImage(data: imageData)
-        } else {
-            if !movie.fetchInProgress {
-                movie.fetchImageData() { fetchComplete in
-                    if fetchComplete {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.movieSearchTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                        }
-                    }
-                }
-            }
+        let movieReleaseYear: String = (movie.releaseDate! as NSString).substringToIndex(4)
+        cell.movieTitleLabel.text = "\(movie.title) (\(movieReleaseYear))"
         
-        }
         return cell
     }
     
