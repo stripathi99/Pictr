@@ -25,10 +25,6 @@ class MovieCollectionViewController: UICollectionViewController {
             navigationItem.title = "Now Playing"
         }
         
-        //UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.grayColor()], forState:.Normal)
-        
-        //UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState:.Selected)
-        
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
         
@@ -59,18 +55,38 @@ class MovieCollectionViewController: UICollectionViewController {
     
     private func getMovies() {
         TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
-            self.movies = results!
-            dispatch_async(dispatch_get_main_queue()) {
-                self.movieCollectionView.reloadData()
+            if error != nil {
+                print("\(error?.localizedDescription)")
+            } else {
+                if let moviesDictionary = results {
+                    let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
+                        let movie = Movie(dictionary: dictionary)
+                        return movie
+                    }
+                    self.movies = movies
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.movieCollectionView.reloadData()
+                    }
+                }
             }
         }
     }
     
     private func getMoviesForGenres() {
         TMDBClient.sharedInstance().getMoviesForGenre(genre!.genreID) { results, error in
-            self.movies = results!
-            dispatch_async(dispatch_get_main_queue()) {
-                self.movieCollectionView.reloadData()
+            if error != nil {
+                print("\(error?.localizedDescription)")
+            } else {
+                if let moviesDictionary = results {
+                    let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
+                        let movie = Movie(dictionary: dictionary)
+                        return movie
+                    }
+                    self.movies = movies
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.movieCollectionView.reloadData()
+                    }
+                }
             }
         }
     }

@@ -23,6 +23,8 @@
 		98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */; };
 		98A2DB051C01FB4D006ABD4C /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */; };
 		98C4A52F1C0334EE00A2A7A1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C4A52E1C0334EE00A2A7A1 /* ImageCache.swift */; };
+		98C4A5311C03623D00A2A7A1 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C4A5301C03623D00A2A7A1 /* CoreDataStackManager.swift */; };
+		98C4A5371C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98C4A5351C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld */; };
 		98D0BA591BF877300014BF6F /* AddToButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D0BA581BF877300014BF6F /* AddToButton.swift */; };
 		98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F031511BFB542300260D91 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		98C4A52E1C0334EE00A2A7A1 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		98C4A5301C03623D00A2A7A1 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		98C4A5361C037B7A00A2A7A1 /* PictrDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictrDataModel.xcdatamodel; sourceTree = "<group>"; };
 		98D0BA581BF877300014BF6F /* AddToButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToButton.swift; sourceTree = "<group>"; };
 		98F031511BFB542300260D91 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +90,8 @@
 				988190141BF506C100C171D0 /* Main.storyboard */,
 				988190171BF506C100C171D0 /* Assets.xcassets */,
 				988190101BF506C100C171D0 /* AppDelegate.swift */,
+				98C4A5301C03623D00A2A7A1 /* CoreDataStackManager.swift */,
+				98C4A5351C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld */,
 				988190191BF506C100C171D0 /* LaunchScreen.storyboard */,
 				9881901C1BF506C100C171D0 /* Info.plist */,
 				988190261BF515D600C171D0 /* TMDBConfig.swift */,
@@ -208,6 +214,8 @@
 				988190271BF515D600C171D0 /* TMDBConfig.swift in Sources */,
 				988190131BF506C100C171D0 /* MovieCollectionViewController.swift in Sources */,
 				98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */,
+				98C4A5311C03623D00A2A7A1 /* CoreDataStackManager.swift in Sources */,
+				98C4A5371C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld in Sources */,
 				98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */,
 				988190291BF516EF00C171D0 /* TMDBConvenience.swift in Sources */,
 				98A2DAFD1C01D13A006ABD4C /* GenreTableViewController.swift in Sources */,
@@ -366,6 +374,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		98C4A5351C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				98C4A5361C037B7A00A2A7A1 /* PictrDataModel.xcdatamodel */,
+			);
+			currentVersion = 98C4A5361C037B7A00A2A7A1 /* PictrDataModel.xcdatamodel */;
+			path = PictrDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 988190051BF506C100C171D0 /* Project object */;
 }

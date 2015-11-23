@@ -21,19 +21,27 @@ class GenreTableViewController: UITableViewController {
         genreTableView.delegate = self
         genreTableView.dataSource = self
         
-        TMDBClient.sharedInstance().getGenres() { results, error in
-            print("viewDidLoad error - \(error)")
-            self.genres = results!
-            print("viewDidLoad results - \(self.genres.count)")
-            dispatch_async(dispatch_get_main_queue()) {
-                self.genreTableView.reloadData()
-            }
-        }
+        getGenres()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func getGenres() {
+        
+        TMDBClient.sharedInstance().getGenres() { results , error in
+            if (error != nil) {
+                print("\(error?.localizedDescription)")
+            } else {
+                if let genresDictionary = results {
+                    let genres = genresDictionary.map() { (dictionary: [String : AnyObject]) -> Genre in
+                        let genre = Genre(dictionary: dictionary)
+                        return genre
+                    }
+                    self.genres = genres
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.genreTableView.reloadData()
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source

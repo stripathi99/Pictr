@@ -109,7 +109,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // Method to get search resuts
-    func searchMovies(searchString: String) {
+    private func searchMovies(searchString: String) {
         
         if let task = searchTask {
             task.cancel()
@@ -117,11 +117,19 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         
         searchTask = TMDBClient.sharedInstance().getMoviesForSearchString(searchString) { results, error in
             self.searchTask = nil
-            if let movieResults = results {
-                self.searchResults = movieResults
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.movieSearchActivityIndicator.stopAnimating()
-                    self.movieSearchTableView.reloadData()
+            if error != nil {
+                print("\(error?.localizedDescription)")
+            } else {
+                if let moviesDictionary = results {
+                    let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
+                        let movie = Movie(dictionary: dictionary)
+                        return movie
+                    }
+                    self.searchResults = movies
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.movieSearchActivityIndicator.stopAnimating()
+                        self.movieSearchTableView.reloadData()
+                    }
                 }
             }
         }
