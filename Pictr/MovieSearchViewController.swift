@@ -95,8 +95,8 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         let movie = searchResults[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieSearchResultCell") as! MovieTableViewCell
         
-        let movieReleaseYear: String = (movie.releaseDate! as NSString).substringToIndex(4)
-        cell.movieTitleLabel.text = "\(movie.title) (\(movieReleaseYear))"
+        //let movieReleaseYear: String = (movie.releaseDate! as NSString).substringToIndex(4)
+        cell.movieTitleLabel.text = movie.title
         
         return cell
     }
