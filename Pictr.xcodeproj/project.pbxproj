@@ -15,7 +15,6 @@
 		9881901B1BF506C100C171D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988190191BF506C100C171D0 /* LaunchScreen.storyboard */; };
 		988190231BF5150700C171D0 /* TMDBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988190221BF5150700C171D0 /* TMDBConstants.swift */; };
 		988190251BF5157600C171D0 /* TMDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988190241BF5157600C171D0 /* TMDBClient.swift */; };
-		988190271BF515D600C171D0 /* TMDBConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988190261BF515D600C171D0 /* TMDBConfig.swift */; };
 		988190291BF516EF00C171D0 /* TMDBConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988190281BF516EF00C171D0 /* TMDBConvenience.swift */; };
 		9881902B1BF5176200C171D0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881902A1BF5176200C171D0 /* Movie.swift */; };
 		98A2DAFD1C01D13A006ABD4C /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */; };
@@ -42,7 +41,6 @@
 		9881901C1BF506C100C171D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		988190221BF5150700C171D0 /* TMDBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConstants.swift; sourceTree = "<group>"; };
 		988190241BF5157600C171D0 /* TMDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBClient.swift; sourceTree = "<group>"; };
-		988190261BF515D600C171D0 /* TMDBConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConfig.swift; sourceTree = "<group>"; };
 		988190281BF516EF00C171D0 /* TMDBConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConvenience.swift; sourceTree = "<group>"; };
 		9881902A1BF5176200C171D0 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				98C4A5351C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld */,
 				988190191BF506C100C171D0 /* LaunchScreen.storyboard */,
 				9881901C1BF506C100C171D0 /* Info.plist */,
-				988190261BF515D600C171D0 /* TMDBConfig.swift */,
 			);
 			path = Pictr;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 				98A2DB051C01FB4D006ABD4C /* MovieSegmentTableViewCell.swift in Sources */,
 				988190251BF5157600C171D0 /* TMDBClient.swift in Sources */,
 				98D0BA591BF877300014BF6F /* AddToButton.swift in Sources */,
-				988190271BF515D600C171D0 /* TMDBConfig.swift in Sources */,
 				988190131BF506C100C171D0 /* MovieCollectionViewController.swift in Sources */,
 				98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */,
 				98C4A5311C03623D00A2A7A1 /* CoreDataStackManager.swift in Sources */,
