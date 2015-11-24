@@ -52,6 +52,13 @@ class MovieDetailViewController: UIViewController {
         setMovieOverview()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTitleForWatchListButton()
+        setTitleForFavoritesButton()
+    }
+    
     func fetchMovie() -> Movie {
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: sharedContext)
@@ -115,18 +122,23 @@ class MovieDetailViewController: UIViewController {
     
     @IBAction func addToFavorites(sender: AddToButton) {
         movie.isFavorite = !movie.isFavorite
-        //CoreDataStackManager.sharedInstance.saveContext()
-        print("addToFavorites pressed")
+//        do {
+//            try sharedContext.save()
+//        } catch {
+//            fatalError("error while updating, error - \(error)")
+//        }
+        CoreDataStackManager.sharedInstance.saveContext()
         setTitleForFavoritesButton()
     }
     
     @IBAction func addToWatchList(sender: AddToButton) {
-//        dispatch_async(dispatch_get_main_queue()) {
-//            self.movie.isWatched = !self.movie.isWatched
-//        }
-        print("addToWatchList pressed, movie isWatched - \(movie.isWatched)")
         movie.isWatched = !movie.isWatched
-        //CoreDataStackManager.sharedInstance.saveContext()
+//        do {
+//            try sharedContext.save()
+//        } catch {
+//            fatalError("error while updating, error - \(error)")
+//        }
+        CoreDataStackManager.sharedInstance.saveContext()
         setTitleForWatchListButton()
     }
     

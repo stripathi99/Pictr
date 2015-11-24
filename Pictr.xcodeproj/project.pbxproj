@@ -27,6 +27,8 @@
 		98C4A5371C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98C4A5351C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld */; };
 		98D0BA591BF877300014BF6F /* AddToButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D0BA581BF877300014BF6F /* AddToButton.swift */; };
 		98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F031511BFB542300260D91 /* MovieDetailViewController.swift */; };
+		98F129341C044D940099B354 /* MovieListSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F129331C044D940099B354 /* MovieListSegmentControl.swift */; };
+		98F129361C044FCF0099B354 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F129351C044FCF0099B354 /* MovieListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		98C4A5361C037B7A00A2A7A1 /* PictrDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictrDataModel.xcdatamodel; sourceTree = "<group>"; };
 		98D0BA581BF877300014BF6F /* AddToButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToButton.swift; sourceTree = "<group>"; };
 		98F031511BFB542300260D91 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		98F129331C044D940099B354 /* MovieListSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListSegmentControl.swift; sourceTree = "<group>"; };
+		98F129351C044FCF0099B354 /* MovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				98D0BA581BF877300014BF6F /* AddToButton.swift */,
 				98414FAF1BF7B90500A05951 /* MovieCollectionViewCell.swift */,
 				98A2DB041C01FB4D006ABD4C /* MovieTableViewCell.swift */,
+				98F129331C044D940099B354 /* MovieListSegmentControl.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				98F031511BFB542300260D91 /* MovieDetailViewController.swift */,
 				98A2DAFC1C01D13A006ABD4C /* GenreTableViewController.swift */,
 				98A2DB021C01F2E2006ABD4C /* MovieSearchViewController.swift */,
+				98F129351C044FCF0099B354 /* MovieListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,11 +222,13 @@
 				98A2DB031C01F2E2006ABD4C /* MovieSearchViewController.swift in Sources */,
 				98C4A5311C03623D00A2A7A1 /* CoreDataStackManager.swift in Sources */,
 				98C4A5371C037B7A00A2A7A1 /* PictrDataModel.xcdatamodeld in Sources */,
+				98F129361C044FCF0099B354 /* MovieListViewController.swift in Sources */,
 				98F031521BFB542300260D91 /* MovieDetailViewController.swift in Sources */,
 				988190291BF516EF00C171D0 /* TMDBConvenience.swift in Sources */,
 				98A2DAFD1C01D13A006ABD4C /* GenreTableViewController.swift in Sources */,
 				988190111BF506C100C171D0 /* AppDelegate.swift in Sources */,
 				98A2DB011C01D4B2006ABD4C /* Genre.swift in Sources */,
+				98F129341C044D940099B354 /* MovieListSegmentControl.swift in Sources */,
 				98414FB01BF7B90500A05951 /* MovieCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

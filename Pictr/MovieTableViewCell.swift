@@ -10,8 +10,8 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
-    //@IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var moviePosterImageView: UIImageView!
     
     var taskToCancelifCellIsReused: NSURLSessionTask? {
         
@@ -29,7 +29,7 @@ class MovieTableViewCell: UITableViewCell {
         backgroundView.backgroundColor = UIColor.blackColor()
         selectedBackgroundView = backgroundView
         
-        //moviePosterImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        //moviePosterImageView.clipsToBounds = true
+        moviePosterImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        moviePosterImageView.clipsToBounds = true
     }
 }

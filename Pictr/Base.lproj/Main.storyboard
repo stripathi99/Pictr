@@ -413,10 +413,10 @@
             </objects>
             <point key="canvasLocation" x="1239" y="413"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie List View Controller-->
         <scene sceneID="bIZ-W8-bWK">
             <objects>
-                <viewController id="VFK-Pb-k3s" sceneMemberID="viewController">
+                <viewController id="VFK-Pb-k3s" customClass="MovieListViewController" customModule="Pictr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="InZ-S5-q65"/>
                         <viewControllerLayoutGuide type="bottom" id="y3I-Yy-T2K"/>
@@ -425,18 +425,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3SF-tD-Nv0">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3SF-tD-Nv0" customClass="MovieListSegmentControl" customModule="Pictr" customModuleProvider="target">
                                 <rect key="frame" x="20" y="72" width="560" height="29"/>
                                 <animations/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Watch List"/>
+                                    <segment title="Favorites"/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectList:" destination="VFK-Pb-k3s" eventType="valueChanged" id="MnO-o4-25H"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xTz-ix-UXq">
                                 <rect key="frame" x="20" y="108" width="560" height="443"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieListTableViewCell" rowHeight="62" id="JCo-Ij-4MV" customClass="MovieTableViewCell" customModule="Pictr" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="560" height="62"/>
@@ -456,7 +460,7 @@
                                                     <rect key="frame" x="58" y="10" width="494" height="42"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -472,6 +476,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="moviePosterImageView" destination="QUP-df-u3I" id="BnR-aI-qdH"/>
+                                            <outlet property="movieTitleLabel" destination="1bf-u4-FhY" id="53b-RL-Obn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -489,6 +498,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iwD-82-wcI"/>
+                    <connections>
+                        <outlet property="movieListSegmentControl" destination="3SF-tD-Nv0" id="Pch-fx-4CJ"/>
+                        <outlet property="movieListTableView" destination="xTz-ix-UXq" id="dj2-O9-3rx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WrX-3S-nHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -518,9 +531,9 @@
         <scene sceneID="KLg-Ev-Bu5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xsr-fP-uW1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Lists" id="HXo-TP-Jrq"/>
+                    <tabBarItem key="tabBarItem" title="My Lists" image="myLists" id="HXo-TP-Jrq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XDJ-VG-ASN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="XDJ-VG-ASN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -539,5 +552,6 @@
         <image name="genres" width="25" height="25"/>
         <image name="genresFilled" width="25" height="25"/>
         <image name="movies" width="30" height="30"/>
+        <image name="myLists" width="25" height="25"/>
     </resources>
 </document>
