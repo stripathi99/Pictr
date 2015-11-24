@@ -12,7 +12,7 @@ import CoreData
 class GenreTableViewController: UITableViewController {
 
     @IBOutlet var genreTableView: UITableView!
-    var genres = [Genre]()
+    private var genres = [Genre]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

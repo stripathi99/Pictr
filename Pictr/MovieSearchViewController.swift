@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
 
@@ -81,6 +82,12 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    // MARK: - Core Data Convenience
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance.managedObjectContext!
+    }
+    
     // MARK: - TableView delegates & datasource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -102,8 +109,10 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let movie = searchResults[indexPath.row]
         let controller = storyboard?.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-        controller.movie = searchResults[indexPath.row]
+        controller.movieID = movie.id
+        //controller.movie = searchResults[indexPath.row]
         
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -122,7 +131,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
-                        let movie = Movie(dictionary: dictionary)
+                        let movie = Movie(dictionary: dictionary, context: self.sharedContext)
                         return movie
                     }
                     self.searchResults = movies

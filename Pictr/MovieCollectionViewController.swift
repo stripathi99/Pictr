@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MovieCollectionViewController: UICollectionViewController {
     
@@ -40,10 +41,35 @@ class MovieCollectionViewController: UICollectionViewController {
         movieCollectionView.collectionViewLayout = layout
         
         if (genre != nil) {
-            getMoviesForGenres()
+            getAllMoviesForGenres()
         } else {
-            getMovies()
+            getAllMovies()
         }
+        
+//        let fetchRequest = NSFetchRequest(entityName: "Movie")
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+//        fetchRequest.resultType = NSFetchRequestResultType.ManagedObjectResultType
+//        
+//        do {
+//            movies = try sharedContext.executeFetchRequest(fetchRequest) as! [Movie]
+//            print("fetchedMovies - \(movies)")
+//            print("fetchedMovies count - \(movies.count)")
+//            if (self.genre != nil) {
+//                self.getAllMoviesForGenres()
+//            } else {
+//                self.getAllMovies()
+//            }
+////            if movies.count == 0 {
+////                print("movies count - \(movies.count)")
+////                if (self.genre != nil) {
+////                    self.getAllMoviesForGenres()
+////                } else {
+////                    self.getAllMovies()
+////                }
+////            }
+//        } catch {
+//            fatalError("error - \(error)")
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,14 +79,14 @@ class MovieCollectionViewController: UICollectionViewController {
     
     // MARK: - Getting Movies
     
-    private func getMovies() {
+    private func getAllMovies() {
         TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
             if error != nil {
                 print("\(error?.localizedDescription)")
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
-                        let movie = Movie(dictionary: dictionary)
+                        let movie = Movie(dictionary: dictionary, context: self.sharedContext)
                         return movie
                     }
                     self.movies = movies
@@ -70,16 +96,23 @@ class MovieCollectionViewController: UICollectionViewController {
                 }
             }
         }
+        dispatch_async(dispatch_get_main_queue()) {
+            do {
+                try self.sharedContext.save()
+            } catch {
+                fatalError("error saving the movies, error - \(error)")
+            }
+        }
     }
     
-    private func getMoviesForGenres() {
+    private func getAllMoviesForGenres() {
         TMDBClient.sharedInstance().getMoviesForGenre(Int(genre!.id.intValue)) { results, error in
             if error != nil {
                 print("\(error?.localizedDescription)")
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
-                        let movie = Movie(dictionary: dictionary)
+                        let movie = Movie(dictionary: dictionary, context: self.sharedContext)
                         return movie
                     }
                     self.movies = movies
@@ -89,11 +122,24 @@ class MovieCollectionViewController: UICollectionViewController {
                 }
             }
         }
+        dispatch_async(dispatch_get_main_queue()) {
+            do {
+                try self.sharedContext.save()
+            } catch {
+                fatalError("error saving the movies, error - \(error)")
+            }
+        }
+    }
+    
+    // MARK: - Core Data Convenience
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance.managedObjectContext!
     }
     
     //  MARK: - CollectionView Delegates
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("inside numberOfItemsInSection count-\(movies.count)")
+        print("inside numberOfItemsInSection count-\(movies.count)")
         return movies.count
     }
     
@@ -105,11 +151,14 @@ class MovieCollectionViewController: UICollectionViewController {
         let movie = movies[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCollectionViewCell", forIndexPath: indexPath) as! MovieCollectionViewCell
         
-        if movie.posterImage != nil {
-            
+        if movie.posterPath == nil || movie.posterPath == "" {
+            posterImage = UIImage(named: "noImage")
+        }
+        else if (movie.posterImage != nil) {
             posterImage = movie.posterImage
-        } else {
-            
+        }
+        else {
+        
             let task = TMDBClient.sharedInstance().taskForGETImage("w185", filePath: movie.posterPath!) {
                 data, error in
                 if let error = error {
@@ -127,7 +176,7 @@ class MovieCollectionViewController: UICollectionViewController {
             }
             cell.taskToCancelifCellIsReused = task
         }
-        
+    
         cell.movieImageView.image = posterImage
         cell.movieTitleLabel.text = movie.title
         
@@ -136,8 +185,10 @@ class MovieCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        let movie = movies[indexPath.row]
         let controller = storyboard?.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-        controller.movie = movies[indexPath.row]
+        controller.movieID = movie.id
+        //controller.movie = movies[indexPath.row]
         
         navigationController?.pushViewController(controller, animated: true)
     }

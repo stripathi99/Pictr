@@ -5,34 +5,45 @@
 //  Created by Jarrod Parkes on 2/11/15.
 //  Copyright (c) 2015 Jarrod Parkes. All rights reserved.
 //
-import Foundation
+
 import UIKit
+import CoreData
 
-class Movie {
+class Movie: NSManagedObject {
 
-    var title = ""
-    var id: Int64 = 0
-    var posterPath: String? = nil
-    var releaseDate: String? = nil
-    var overview: String? = nil
-    var voteAverage: Double = 0.0
-    var voteCount: Int = 0
-    //var popularity: Double = 0
+    @NSManaged var id: NSNumber
+    @NSManaged var title: String
+    @NSManaged var posterPath: String?
+    @NSManaged var releaseDate: String?
+    @NSManaged var overview: String?
+    @NSManaged var voteAverage: NSNumber?
+    @NSManaged var voteCount: NSNumber?
     
-    /* Construct a TMDBMovie from a dictionary */
-    init(dictionary: [String : AnyObject]) {
+    @NSManaged var isWatched: Bool
+    @NSManaged var isFavorite: Bool
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         
+        let entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        id = dictionary[TMDBClient.JSONResponseKeys.MovieID] as! Int
         title = dictionary[TMDBClient.JSONResponseKeys.MovieTitle] as! String
-        id = Int64(dictionary[TMDBClient.JSONResponseKeys.MovieID] as! Int)
         posterPath = dictionary[TMDBClient.JSONResponseKeys.MoviePosterPath] as? String
-        overview = dictionary[TMDBClient.JSONResponseKeys.MovieOverview] as? String
-        voteAverage = dictionary[TMDBClient.JSONResponseKeys.MovieVoteAverage] as! Double
-        voteCount = dictionary[TMDBClient.JSONResponseKeys.MovieVoteCount] as! Int
         releaseDate = dictionary[TMDBClient.JSONResponseKeys.MovieReleaseDate] as? String
+        overview = dictionary[TMDBClient.JSONResponseKeys.MovieOverview] as? String
+        voteAverage = dictionary[TMDBClient.JSONResponseKeys.MovieVoteAverage] as? Double
+        voteCount = dictionary[TMDBClient.JSONResponseKeys.MovieVoteCount] as? Int
+        
+        isWatched = false
+        isFavorite = false
     }
     
     var posterImage: UIImage? {
-        
         get {
             return TMDBClient.Caches.imageCache.imageWithIdentifier(posterPath)
         }

@@ -6,7 +6,6 @@
 //  Copyright © 2015 coolshubh4. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 class Genre: NSManagedObject {
@@ -23,7 +22,7 @@ class Genre: NSManagedObject {
         let entity = NSEntityDescription.entityForName("Genre", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        self.id = dictionary[TMDBClient.JSONResponseKeys.GenreID] as! Int
-        self.name = dictionary[TMDBClient.JSONResponseKeys.GenreName] as! String
+        id = dictionary[TMDBClient.JSONResponseKeys.GenreID] as! Int
+        name = dictionary[TMDBClient.JSONResponseKeys.GenreName] as! String
     }
 }
