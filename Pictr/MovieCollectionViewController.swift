@@ -45,31 +45,6 @@ class MovieCollectionViewController: UICollectionViewController {
         } else {
             getAllMovies()
         }
-        
-//        let fetchRequest = NSFetchRequest(entityName: "Movie")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-//        fetchRequest.resultType = NSFetchRequestResultType.ManagedObjectResultType
-//        
-//        do {
-//            movies = try sharedContext.executeFetchRequest(fetchRequest) as! [Movie]
-//            print("fetchedMovies - \(movies)")
-//            print("fetchedMovies count - \(movies.count)")
-//            if (self.genre != nil) {
-//                self.getAllMoviesForGenres()
-//            } else {
-//                self.getAllMovies()
-//            }
-////            if movies.count == 0 {
-////                print("movies count - \(movies.count)")
-////                if (self.genre != nil) {
-////                    self.getAllMoviesForGenres()
-////                } else {
-////                    self.getAllMovies()
-////                }
-////            }
-//        } catch {
-//            fatalError("error - \(error)")
-//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -139,13 +114,11 @@ class MovieCollectionViewController: UICollectionViewController {
     
     //  MARK: - CollectionView Delegates
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("inside numberOfItemsInSection count-\(movies.count)")
         return movies.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        //print("inside cellForItemAtIndexPath")
+
         var posterImage = UIImage(named: "posterPlaceholder")
         
         let movie = movies[indexPath.row]

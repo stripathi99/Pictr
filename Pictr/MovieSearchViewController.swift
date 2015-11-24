@@ -100,10 +100,12 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let movie = searchResults[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieSearchResultCell") as! MovieTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieSearchResultCell") as UITableViewCell!
         
         //let movieReleaseYear: String = (movie.releaseDate! as NSString).substringToIndex(4)
-        cell.movieTitleLabel.text = movie.title
+        cell.backgroundColor = UIColor.blackColor()
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.text = movie.title
         
         return cell
     }
@@ -112,8 +114,6 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         let movie = searchResults[indexPath.row]
         let controller = storyboard?.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
         controller.movieID = movie.id
-        //controller.movie = searchResults[indexPath.row]
-        
         navigationController?.pushViewController(controller, animated: true)
     }
     

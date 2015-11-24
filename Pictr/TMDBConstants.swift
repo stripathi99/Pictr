@@ -98,12 +98,4 @@ extension TMDBClient {
         static let GenreName = "name"
         static let GenreResults = "genres"
     }
-    
-//    // MARK: - Poster Sizes
-//    struct PosterSizes {
-//        
-//        static let RowPoster = TMDBClient.sharedInstance().config.posterSizes[2]
-//        static let DetailPoster = TMDBClient.sharedInstance().config.posterSizes[4]
-//        
-//    }
 }

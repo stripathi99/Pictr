@@ -1,5 +1,5 @@
 //
-//  MovieTableViewCell.swift
+//  MovieSegmentTableViewCell.swift
 //  Pictr
 //
 //  Created by Shubham Tripathi on 22/11/15.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+class MovieSegmentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var moviePosterImageView: UIImageView!
     
-    var taskToCancelifCellIsReused: NSURLSessionTask? {
-        
-        didSet {
-            if let taskToCancel = oldValue {
-                taskToCancel.cancel()
-            }
-        }
-    }
+//    var taskToCancelifCellIsReused: NSURLSessionTask? {
+//        
+//        didSet {
+//            if let taskToCancel = oldValue {
+//                taskToCancel.cancel()
+//            }
+//        }
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

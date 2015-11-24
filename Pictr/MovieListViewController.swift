@@ -59,7 +59,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieListTableViewCell", forIndexPath: indexPath) as! MovieTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieListTableViewCell", forIndexPath: indexPath) as! MovieSegmentTableViewCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -73,7 +73,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Configure cell
     
-    func configureCell(cell: MovieTableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(cell: MovieSegmentTableViewCell, atIndexPath indexPath: NSIndexPath) {
         let movie = fetchedResultsController.objectAtIndexPath(indexPath) as! Movie
         
         cell.movieTitleLabel.text = movie.title

@@ -38,14 +38,8 @@ class MovieDetailViewController: UIViewController {
         movieBackgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         moviePosterImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
-        print("movieID recieved - \(movieID)")
-        
         movie = fetchMovie()
-        
-        print("movie fetched - \(movie.overview)")
-        
-        print("Watched = \(movie.isWatched) & Favorite = \(movie.isFavorite)")
-        
+       
         setMovieImage()
         setMovieTitle()
         setMovieRating()
@@ -122,22 +116,12 @@ class MovieDetailViewController: UIViewController {
     
     @IBAction func addToFavorites(sender: AddToButton) {
         movie.isFavorite = !movie.isFavorite
-//        do {
-//            try sharedContext.save()
-//        } catch {
-//            fatalError("error while updating, error - \(error)")
-//        }
         CoreDataStackManager.sharedInstance.saveContext()
         setTitleForFavoritesButton()
     }
     
     @IBAction func addToWatchList(sender: AddToButton) {
         movie.isWatched = !movie.isWatched
-//        do {
-//            try sharedContext.save()
-//        } catch {
-//            fatalError("error while updating, error - \(error)")
-//        }
         CoreDataStackManager.sharedInstance.saveContext()
         setTitleForWatchListButton()
     }
