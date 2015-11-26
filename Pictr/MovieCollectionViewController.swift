@@ -57,7 +57,7 @@ class MovieCollectionViewController: UICollectionViewController {
     private func getAllMovies() {
         TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
             if error != nil {
-                print("\(error?.localizedDescription)")
+                self.displayAlertView(error?.localizedDescription)
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
@@ -83,7 +83,7 @@ class MovieCollectionViewController: UICollectionViewController {
     private func getAllMoviesForGenres() {
         TMDBClient.sharedInstance().getMoviesForGenre(Int(genre!.id.intValue)) { results, error in
             if error != nil {
-                print("\(error?.localizedDescription)")
+                self.displayAlertView(error?.localizedDescription)
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
@@ -104,6 +104,13 @@ class MovieCollectionViewController: UICollectionViewController {
                 fatalError("error saving the movies, error - \(error)")
             }
         }
+    }
+    
+    func displayAlertView(alertMessage: String!) {
+        
+        let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Core Data Convenience
