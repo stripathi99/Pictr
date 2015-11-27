@@ -18,7 +18,6 @@ class MovieCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         if let genreName = genre?.name {
             navigationItem.title = genreName
@@ -49,7 +48,6 @@ class MovieCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        movieCollectionView.reloadData()
     }
     
     // MARK: - Getting Movies
