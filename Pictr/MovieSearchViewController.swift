@@ -44,6 +44,7 @@ class MovieSearchViewController: UIViewController, UITableViewDelegate, UITableV
         movieSearchController.searchBar.sizeToFit()
         movieSearchController.searchBar.placeholder = "Search Movies (by title)"
         movieSearchController.searchBar.barTintColor = UIColor.blackColor()
+        movieSearchController.searchBar.keyboardAppearance = UIKeyboardAppearance.Dark
         
         movieSearchTableView.tableHeaderView = movieSearchController.searchBar
         self.definesPresentationContext = true
