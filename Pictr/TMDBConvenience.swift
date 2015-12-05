@@ -13,9 +13,24 @@ import Foundation
 
 extension TMDBClient {
     
-    func getNowPlayingMovies(completionHandler: (result: [[String : AnyObject]]?, error: NSError?) -> Void) -> NSURLSessionDataTask? {
+    func getMovies(moviesToGet: String, completionHandler: (result: [[String : AnyObject]]?, error: NSError?) -> Void) -> NSURLSessionDataTask?{
         
-        let task = taskForGETMethod(Methods.NowPlaying, parameters: nil) { JSONResult, error in
+        var movieMethodToCall: String
+        
+        switch(moviesToGet) {
+        case "Now Playing":
+            movieMethodToCall = Methods.NowPlaying
+        case "Top Rated":
+            movieMethodToCall = Methods.TopRated
+        case "Popular":
+            movieMethodToCall = Methods.Popular
+        case "Upcoming":
+            movieMethodToCall = Methods.Upcoming
+        default:
+            movieMethodToCall = Methods.NowPlaying
+        }
+        
+        let task = taskForGETMethod(movieMethodToCall, parameters: nil) { JSONResult, error in
             
             if let error = error {
                 completionHandler(result: nil, error: error)

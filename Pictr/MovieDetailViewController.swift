@@ -81,6 +81,9 @@ class MovieDetailViewController: UIViewController {
         if movie.posterImage != nil {
             movieBackgroundImageView.image = movie.posterImage
             moviePosterImageView.image = movie.posterImage
+        } else if movie.posterPath == nil{
+            movieBackgroundImageView.image = UIImage(named: "noImage")
+            moviePosterImageView.image = UIImage(named: "noImage")
         } else {
             let task = TMDBClient.sharedInstance().taskForGETImage("w185", filePath: movie.posterPath!) { data, error in
                 if let error = error {
@@ -101,11 +104,20 @@ class MovieDetailViewController: UIViewController {
     }
     
     func setMovieRating() {
-        movieRatingLabel.text = "\(movie.voteAverage!)/10 (\(movie.voteCount!) votes)"
+        if movie.voteAverage == nil || movie.voteCount == nil {
+            movieRatingLabel.text = "N/A"
+        } else {
+            movieRatingLabel.text = "\(Double(movie.voteAverage!))/10 (\(movie.voteCount!) votes)"
+        }
     }
     
     func setMovieOverview() {
-        movieOverviewTextView.text = movie.overview
+        
+        if movie.overview == nil || movie.overview == "" {
+            movieOverviewTextView.text = "N/A"
+        } else {
+            movieOverviewTextView.text = movie.overview
+        }
     }
     
     // MARK: - Core Data Convenience

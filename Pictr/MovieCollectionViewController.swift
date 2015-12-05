@@ -15,6 +15,7 @@ class MovieCollectionViewController: UICollectionViewController {
     
     private var movies = [Movie]()
     var genre: Genre?
+    var moviesToDisplay = "Now Playing"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,13 @@ class MovieCollectionViewController: UICollectionViewController {
         if let genreName = genre?.name {
             navigationItem.title = genreName
         } else {
-            navigationItem.title = "Now Playing"
+            if revealViewController() != nil {
+                navigationItem.title = moviesToDisplay
+                let sidebarMenuButton = UIBarButtonItem(image: UIImage(named: "sidebarMenu"), style: .Plain, target: revealViewController(), action: "revealToggle:")
+                navigationItem.leftBarButtonItem = sidebarMenuButton
+                
+                view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
         
         movieCollectionView.delegate = self
@@ -53,7 +60,7 @@ class MovieCollectionViewController: UICollectionViewController {
     // MARK: - Getting Movies
     
     private func getAllMovies() {
-        TMDBClient.sharedInstance().getNowPlayingMovies() { results, error in
+        TMDBClient.sharedInstance().getMovies(moviesToDisplay) { results, error in
             if error != nil {
                 self.displayAlertView(error?.localizedDescription)
             } else {
