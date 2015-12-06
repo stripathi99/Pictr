@@ -148,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sYT-u8-mqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2656" y="-2126"/>
+            <point key="canvasLocation" x="-2280" y="-2818"/>
         </scene>
         <!--Sidebar Menu Table View Controller-->
         <scene sceneID="ny6-bX-jeG">
@@ -315,7 +315,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLo-eG-9Qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2656" y="-975"/>
+            <point key="canvasLocation" x="-2684" y="-2107"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Kpi-IB-Vsc">
@@ -335,7 +335,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Le7-JZ-phK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1492" y="-2126"/>
+            <point key="canvasLocation" x="-1844" y="-2107"/>
         </scene>
         <!--Movie Search View Controller-->
         <scene sceneID="hAY-ny-P5w">

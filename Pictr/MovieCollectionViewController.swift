@@ -128,6 +128,7 @@ class MovieCollectionViewController: UICollectionViewController {
         let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            
             if methodToCallForRetry == "movieRetry" {
                 self.getAllMovies()
             } else {
