@@ -12,6 +12,7 @@ import CoreData
 class MovieCollectionViewController: UICollectionViewController {
     
     @IBOutlet var movieCollectionView: UICollectionView!
+    @IBOutlet weak var fetchMoviesActivityIndicator: UIActivityIndicatorView!
     
     private var movies = [Movie]()
     var genre: Genre?
@@ -20,14 +21,19 @@ class MovieCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchMoviesActivityIndicator.hidesWhenStopped = true
+        fetchMoviesActivityIndicator.stopAnimating()
+        
+        
         if let genreName = genre?.name {
             navigationItem.title = genreName
         } else {
+            
+            // Sidebar menu
             if revealViewController() != nil {
                 navigationItem.title = moviesToDisplay
                 let sidebarMenuButton = UIBarButtonItem(image: UIImage(named: "sidebarMenu"), style: .Plain, target: revealViewController(), action: "revealToggle:")
                 navigationItem.leftBarButtonItem = sidebarMenuButton
-                
                 view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             }
         }
@@ -35,12 +41,12 @@ class MovieCollectionViewController: UICollectionViewController {
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
         
+        // Defining the size of CollectionView cells
         let layout = UICollectionViewFlowLayout()
         let space: CGFloat = 3.0
         let widthDimension = (self.view.frame.width - (2 * space)) / space
         let heightDimension = (self.view.frame.height - (2 * space)) / space
         
-        // Defining the size of CollectionView cells
         layout.minimumInteritemSpacing = space
         layout.minimumLineSpacing = space
         layout.itemSize = CGSizeMake(widthDimension, heightDimension)
@@ -60,9 +66,11 @@ class MovieCollectionViewController: UICollectionViewController {
     // MARK: - Getting Movies
     
     private func getAllMovies() {
+        
+        fetchMoviesActivityIndicator.startAnimating()
         TMDBClient.sharedInstance().getMovies(moviesToDisplay) { results, error in
             if error != nil {
-                self.displayAlertView(error?.localizedDescription)
+                self.displayAlertView(error?.localizedDescription, methodToCallForRetry: "movieRetry")
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
@@ -72,6 +80,7 @@ class MovieCollectionViewController: UICollectionViewController {
                     self.movies = movies
                     dispatch_async(dispatch_get_main_queue()) {
                         self.movieCollectionView.reloadData()
+                        self.fetchMoviesActivityIndicator.stopAnimating()
                     }
                 }
             }
@@ -86,9 +95,11 @@ class MovieCollectionViewController: UICollectionViewController {
     }
     
     private func getAllMoviesForGenres() {
+        
+        fetchMoviesActivityIndicator.startAnimating()
         TMDBClient.sharedInstance().getMoviesForGenre(Int(genre!.id.intValue)) { results, error in
             if error != nil {
-                self.displayAlertView(error?.localizedDescription)
+                self.displayAlertView(error?.localizedDescription, methodToCallForRetry: "genreRetry")
             } else {
                 if let moviesDictionary = results {
                     let movies = moviesDictionary.map() { (dictionary: [String : AnyObject]) -> Movie in
@@ -98,6 +109,7 @@ class MovieCollectionViewController: UICollectionViewController {
                     self.movies = movies
                     dispatch_async(dispatch_get_main_queue()) {
                         self.movieCollectionView.reloadData()
+                        self.fetchMoviesActivityIndicator.stopAnimating()
                     }
                 }
             }
@@ -111,10 +123,18 @@ class MovieCollectionViewController: UICollectionViewController {
         }
     }
     
-    func displayAlertView(alertMessage: String!) {
+    private func displayAlertView(alertMessage: String!, methodToCallForRetry: String!) {
         
         let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            if methodToCallForRetry == "movieRetry" {
+                self.getAllMovies()
+            } else {
+                self.getAllMoviesForGenres()
+            }
+        }))
+        
         presentViewController(alert, animated: true, completion: nil)
     }
     

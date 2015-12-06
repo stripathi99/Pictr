@@ -21,6 +21,12 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="6cj-96-ckl">
+                            <rect key="frame" x="0.0" y="-64" width="600" height="600"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="iav-Ik-WKR" customClass="MovieCollectionViewCell" customModule="Pictr" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="200" height="295"/>
@@ -40,10 +46,6 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IW6-Gk-kUE">
-                                            <rect key="frame" x="90" y="138" width="20" height="20"/>
-                                            <animations/>
-                                        </activityIndicatorView>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -56,13 +58,10 @@
                                     <constraint firstItem="Cqm-TW-mpi" firstAttribute="leading" secondItem="3nR-99-k4z" secondAttribute="leading" id="Db0-Bw-Mce"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="3nR-99-k4z" secondAttribute="bottom" constant="27" id="EtF-IS-sco"/>
                                     <constraint firstItem="Cqm-TW-mpi" firstAttribute="trailing" secondItem="3nR-99-k4z" secondAttribute="trailing" id="eer-tx-2vF"/>
-                                    <constraint firstItem="IW6-Gk-kUE" firstAttribute="centerX" secondItem="Cqm-TW-mpi" secondAttribute="centerX" id="et9-Mr-nKn"/>
-                                    <constraint firstItem="IW6-Gk-kUE" firstAttribute="centerY" secondItem="iav-Ik-WKR" secondAttribute="centerY" id="fM8-6h-EYQ"/>
                                     <constraint firstItem="3nR-99-k4z" firstAttribute="top" secondItem="iav-Ik-WKR" secondAttribute="top" id="fnM-Ub-U0g"/>
                                     <constraint firstItem="Cqm-TW-mpi" firstAttribute="top" secondItem="3nR-99-k4z" secondAttribute="bottom" constant="-3" id="pJS-Th-tE6"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="movieActivityIndicator" destination="IW6-Gk-kUE" id="OUY-6m-9DO"/>
                                     <outlet property="movieImageView" destination="3nR-99-k4z" id="VO7-3y-Ry9"/>
                                     <outlet property="movieTitleLabel" destination="Cqm-TW-mpi" id="0f3-sK-222"/>
                                 </connections>
@@ -75,12 +74,13 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="uMd-5f-nF3"/>
                     <connections>
+                        <outlet property="fetchMoviesActivityIndicator" destination="6cj-96-ckl" id="S6n-Pg-Cgr"/>
                         <outlet property="movieCollectionView" destination="xkv-Pg-Dmb" id="7qb-Az-Ekx"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-VU-F1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="555" y="-1628"/>
+            <point key="canvasLocation" x="155" y="-2640"/>
         </scene>
         <!--Genre Table View Controller-->
         <scene sceneID="AwJ-Cq-FLa">
@@ -125,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvw-ZY-P0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="555" y="-843"/>
+            <point key="canvasLocation" x="155" y="-1943"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="XAS-Oa-1cP">
@@ -148,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sYT-u8-mqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2664" y="-1485"/>
+            <point key="canvasLocation" x="-2656" y="-2126"/>
         </scene>
         <!--Sidebar Menu Table View Controller-->
         <scene sceneID="ny6-bX-jeG">
@@ -315,7 +315,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLo-eG-9Qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1926" y="-2223"/>
+            <point key="canvasLocation" x="-2656" y="-975"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Kpi-IB-Vsc">
@@ -335,7 +335,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Le7-JZ-phK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1072" y="-2126"/>
+            <point key="canvasLocation" x="-1492" y="-2126"/>
         </scene>
         <!--Movie Search View Controller-->
         <scene sceneID="hAY-ny-P5w">
@@ -419,7 +419,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="555" y="-84"/>
+            <point key="canvasLocation" x="-589" y="-456"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="Tmk-Kr-gE1">
@@ -551,7 +551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSC-Xf-1JV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1413" y="-420"/>
+            <point key="canvasLocation" x="921" y="-2312"/>
         </scene>
         <!--Movies-->
         <scene sceneID="SoD-ug-TbA">
@@ -571,7 +571,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W09-EG-Bp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-285" y="-2064"/>
+            <point key="canvasLocation" x="-605" y="-2648"/>
         </scene>
         <!--Genres-->
         <scene sceneID="pDi-Jx-IF4">
@@ -592,7 +592,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PvY-GT-qaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-261" y="-843"/>
+            <point key="canvasLocation" x="-605" y="-1943"/>
         </scene>
         <!--Movie List View Controller-->
         <scene sceneID="bIZ-W8-bWK">
@@ -686,7 +686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WrX-3S-nHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="555" y="695"/>
+            <point key="canvasLocation" x="179" y="-1121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gdi-WJ-wxn">
@@ -706,7 +706,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAt-Dw-bjj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-261" y="-84"/>
+            <point key="canvasLocation" x="-1669" y="-508"/>
         </scene>
         <!--My Lists-->
         <scene sceneID="KLg-Ev-Bu5">
@@ -726,7 +726,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weA-gj-NPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-261" y="695"/>
+            <point key="canvasLocation" x="-605" y="-1133"/>
         </scene>
     </scenes>
     <resources>
@@ -736,6 +736,6 @@
         <image name="myLists" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ExD-Ob-ips"/>
+        <segue reference="sN2-ch-rRx"/>
     </inferredMetricsTieBreakers>
 </document>

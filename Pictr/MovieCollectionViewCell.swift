@@ -13,7 +13,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var movieActivityIndicator: UIActivityIndicatorView!
     
     var taskToCancelifCellIsReused: NSURLSessionTask? {
         
@@ -26,8 +25,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        movieActivityIndicator.hidesWhenStopped = true
         
         movieImageView.contentMode = UIViewContentMode.ScaleAspectFit
         movieImageView.clipsToBounds = true
